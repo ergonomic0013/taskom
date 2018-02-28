@@ -1,0 +1,57 @@
+AppBundle\Entity\ScpfData:
+    type: entity
+    table: SCPF_DATA
+    repositoryClass: AppBundle\Repository\ScpfDataRepository
+    indexes:
+        ID_CLID:
+            columns:
+                - ID_CLID
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        accNumber:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+            column: ACC_NUMBER
+        dateopen:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: DATEOPEN
+        dateclose:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: DATECLOSE
+        sourceOpen:
+            type: string
+            nullable: true
+            length: 6
+            options:
+                fixed: false
+            column: SOURCE_OPEN
+    manyToOne:
+        idClid:
+            targetEntity: ClidData
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ID_CLID:
+                    referencedColumnName: ID_CLID
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

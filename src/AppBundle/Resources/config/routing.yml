@@ -1,0 +1,3 @@
+graph:
+    path:     /graph
+    defaults: { _controller: AppBundle:Dashbord:graph }

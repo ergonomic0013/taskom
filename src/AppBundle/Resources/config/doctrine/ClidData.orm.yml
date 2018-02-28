@@ -1,0 +1,20 @@
+AppBundle\Entity\ClidData:
+    type: entity
+    table: CLID_DATA
+    repositoryClass: AppBundle\Repository\ClidDataRepository
+    id:
+        idClid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: ID_CLID
+    fields:
+        forma:
+            type: string
+            nullable: true
+            length: 3
+            options:
+                fixed: false
+            column: FORMA
+    lifecycleCallbacks: {  }

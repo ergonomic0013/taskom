@@ -1,0 +1,65 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Dashbord:graph{% endblock %}
+
+{% block body %}
+<h1>Daily dashbord: <br></h1>
+
+<div id="StackedBarChart"> </div>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="billboard.js"></script>
+    <script type="text/javascript">
+
+                var chart = bb.generate({
+                      data: {
+                      	x: "x",
+                        columns: [
+                          ["x", {{ datestr|raw }}],     
+                          ["data1", {{ quantityO }}],
+						              ["data2", {{ quantityC }}]
+                        ],
+                        type: "bar",
+                        labels: true,
+                        groups: [
+                          [
+                            "data1",
+                            "data2"
+                          ]
+                        ]
+                      },
+                      axis: {
+                      	x: {
+                      		type: "timeseries",
+                      		
+                      		padding: {
+          					        top: 0,
+          					        bottom: 1000
+          					      },
+                      		tick: {
+                      			fit: false,
+                      			rotate: 45,
+                      			format: "%Y-%m-%d"
+                      		}
+                      	}
+                      },
+                      grid: {
+                        y: {
+                          lines: [
+                            {
+                              value: 0
+                            }
+                          ]
+                        }
+                      },
+                      bindto: "#StackedBarChart"
+                    });
+
+                    setTimeout(function () {
+                        chart.groups([['data1', 'data2']])
+                    }, 10);
+            </script>
+{% endblock %}
